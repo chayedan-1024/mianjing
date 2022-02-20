@@ -1,0 +1,13 @@
+1. 大小端模式
+	大端：数据高字节保存在低地址
+	小端：相反
+
+2. 进程间通信方法(IPC, InterProcess Communication)
+	信号量(Semaphore)
+	共享内存
+	管道
+	消息队列
+	FIFO
+	Socket（不同主机上的线程间通信）
+
+
