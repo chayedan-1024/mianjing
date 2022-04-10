@@ -1,0 +1,31 @@
+需要直接从数据库中检索出转换、计算或格式化过的数据，使用计算字段。
+
+  ## 拼接（concatenate）将值联结到一起构成单个值
+    SELECT Concat(vend_name, '(', vend_country, ')')
+    FROM vendors
+    ORDER BY vend_name;
+    
+  ## 使用RTrim()函数完成删除数据右侧多余的空格来整理数据：
+    SELECT Concat(RTrim(vend_name), '(', RTrim(vend_country), ')')
+    FROM vendors
+    ORDER BY vend_name;
+    
+  ## 使用别名(alias)，别名用AS关键字赋予：
+    SELECT Concat(RTrim(vend_name), '(', RTrim(vend_country), ')) 
+    AS vend_title
+    FROM vendors
+    ORDER BY vend_name;
+    
+    别名有时候也称为导出列（derived column），不管称为什么都代表一个东西。
+    
+  ## 执行算术计算
+    SELECT prod_name,
+           quantity,
+           item_price,
+           quantity * item_price AS expanded_price
+    FROM orderitems
+    WHERE order_num = 20005;
+    
+      MySQL支持基本
+     
+    
