@@ -1,0 +1,11 @@
+# wildcard
+# search pattern
+
+  ## %: 任意字符出现任意次数
+  
+  ## LIKE： SELECT prod_name
+            FROM products
+            WHERE prod_name LIKE "s%e"
+  
+  ## _: 只匹配单个字符
+  
