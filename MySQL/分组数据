@@ -1,0 +1,4 @@
+# 创建分组
+  SELECT vend_id, COUNT(*) AS num_prods
+  FROM products
+  GROUP
