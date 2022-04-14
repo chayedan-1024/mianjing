@@ -1,0 +1,43 @@
+# 创建分组
+  SELECT vend_id, COUNT(*) AS num_prods
+  FROM products
+  GROUP BY vend_id;
+  
+  GROUP BY子句规定：
+    可以嵌套
+    如果使用了嵌套，汇总将在最后规定的分组上进行汇总
+    GROUP BY子句中列出的每个列都必须是检索列或有效的表达式（但不是聚集函数）。
+    如果SELECT中使用表达式，则必须在GROUP BY子句中指定相同的表达式。不能使用别名
+    除了聚集计算语句外，SELECT语句中的每个列都必须在GROUP BY子句中给出。
+    如果分组中具有NULL值，则NULL将作为一个分组返回。如果列值中有多行NULL值，它们将分为一组。
+    GROUP BY子句必须出现在WHERE子句之后，ORDER BY子句之前。
+    
+# 过滤分组
+  HAVING子句：WHERE过滤行，HAVING过滤分组
+    SELECT cust_id, COUNT(*) AS orders
+    FROM oders
+    GROUP BY cust_id
+    HAVING COUNT(*) >= 2;
+    
+    WHERE在数据分组前过滤，HAVING在数据分组后过滤。
+    
+    同时使用WHERE和HAVING的例子：
+      SELECT vend_id, COUNT(*) AS num_prods
+      FROM products
+      WHERE prod_price >= 10
+      GROUP BY vend_id
+      HAVING COUNT(*) >= 2;
+      
+# 分组和排序
+    SELECT order_num, SUM(quantity*item_price) AS ordertotal
+    FROM orderitems
+    GROUP BY order_num
+    HAVING SUM(quantity*item_price) >= 50;
+    
+    SELECT order_num, SUM(quantity*item_price) AS ordertotal
+    FROM orderitems
+    GROUP BY order_num
+    HAVING SUM(quantity*item_price) >= 50
+    ORDER BY ordertotal;
+    
+    
