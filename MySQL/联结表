@@ -1,0 +1,40 @@
+# 联结（join）
+  # 关系表
+    关系表的设计就是要保证把信息分成多个表，一类数据一个表。各表通过某些常用的值（即关系设计中的关系（relation））互相关联。
+    主键（primary key）
+    外键（foreign key）外键为某表中的一列，它包含另一个表的主键值，定义了两个表之间的关系。
+    可伸缩性（scale）能适应不断增加的工作量而不失败。设计良好的数据库或应用程序称之为可伸缩性好（scale well）。
+    
+  # 为什么要使用联结
+    如果数据存在多个表中，用单条SELECT语句检索出数据。
+    联结不是物理实体，在实际的数据库表中不存在。由MySQL根据需要建立，存在于查询的执行当中。
+    
+# 创建联结
+  SELECT vend_name, prod_name, prod_price
+  FROM vendors, products
+  WHERE vendors.vend_id = products.vend_id
+  ORDER BY vend_name, prod_name;
+  
+  # WHERE子句的重要性
+    表的定义中不存在能指示MySQL如何对表进行联结的东西。
+    
+  # 笛卡尔积（cartesian product）由没有联结条件的表关系返回的结果为笛卡尔积。检索出的行的数目将是第一个表中的行数乘以第二个表中的行数。
+    SELECT vend_name, prod_name, prod_price
+    FROM vendors, products
+    ORDER BY vend_name, prod_name;
+    叉联结 
+    
+  内部联结
+    目前为止所用的联结称为等值联结（equijoin），它基于两个表之间的相等测试。这种联结也称为内部联结。
+      SELECT vend_name, prod_name, prod_price
+      FROM vendors INNER JOIN products
+      ON vendors.vend_id = products.vend_id;
+      
+  # 联结多个表
+    SELECT prod_name, vend_name, prod_price, quantity
+    FROM orderitems, products, vendors
+    WHERE products.vend_id = vendors.vend_id
+    AND orderitems.prod_id = prodcuts.prod_id
+    AND order_num = 2005;
+  
+  
